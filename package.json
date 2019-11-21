@@ -22,6 +22,7 @@
   "dependencies": {
     "@nestjs/common": "^6.7.2",
     "@nestjs/core": "^6.7.2",
+    "@nestjs/passport": "^6.1.0",
     "@nestjs/platform-express": "^6.7.2",
     "dotenv": "^8.2.0",
     "express-session": "^1.17.0",
@@ -70,5 +71,22 @@
     },
     "coverageDirectory": "./coverage",
     "testEnvironment": "node"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --write",
+      "tslint -p tsconfig.json",
+      "git add"
+    ],
+    "*.{md,html,json,js}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
